@@ -31,7 +31,7 @@ export const loginSV = async (username, password) => {
         return {
           errCode: 0,
           message: "Login succeed",
-          data: { ...user, password: "" },
+          data: { ...user, password: null },
         };
     }
   } catch (err) {

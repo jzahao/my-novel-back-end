@@ -1,4 +1,3 @@
-import db from "../models/index.js";
 import * as userServices from "../services/user.services.js";
 
 export const login = async (req, res) => {
@@ -11,7 +10,7 @@ export const login = async (req, res) => {
         message: "Missing required parameters",
       });
     else {
-      let _res = await userServices.loginSV(username, password);
+      const _res = await userServices.loginSV(username, password);
       return res.status(200).json(_res);
     }
   } catch (err) {
@@ -30,7 +29,7 @@ export const register = async (req, res) => {
         message: "Missing required parameters",
       });
     else {
-      let _res = await userServices.registerSV(username, password);
+      const _res = await userServices.registerSV(username, password);
       return res.status(200).json(_res);
     }
   } catch (err) {
