@@ -15,6 +15,12 @@ const apiRoutes = (version, app) => {
     userControllers.deleteFavoriteNovel
   );
   router.get("/api/get-favorite-list", userControllers.getFavoriteList);
+  router.get("/api/get-reading-history", userControllers.getReadingHistory);
+  router.post("/api/add-reading-history", userControllers.addReadingHistory);
+  router.put(
+    "/api/update-reading-history",
+    userControllers.updateReadingHistory
+  );
 
   router.get("/api/get-all-novels", novelControllers.getAllNovels);
   router.get(

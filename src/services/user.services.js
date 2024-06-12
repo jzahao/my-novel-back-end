@@ -1,5 +1,5 @@
 import bcrypt from "bcryptjs";
-import { QueryTypes } from "sequelize";
+import { QueryTypes, where } from "sequelize";
 
 import db from "../models/index.js";
 
@@ -142,6 +142,63 @@ export const getFavoriteListSV = async (user_id) => {
         data: list,
       };
     else return { error: true, message: "No data" };
+  } catch (err) {
+    console.log(err);
+    return err;
+  }
+};
+
+export const getReadingHistorySV = async (user_id, novel_id) => {
+  try {
+    const result = await db.ReadingHistory.findOne({
+      where: { user_id, novel_id },
+    });
+    if (result)
+      return {
+        error: false,
+        message: "Get reading history succeed",
+        data: result,
+      };
+    else return { error: true, message: "No data" };
+  } catch (err) {
+    console.log(err);
+    return err;
+  }
+};
+
+export const addReadingHistorySV = async (user_id, novel_id, chapter) => {
+  try {
+    const result = await db.ReadingHistory.create({
+      user_id,
+      novel_id,
+      chapter,
+    });
+    if (result)
+      return {
+        error: false,
+        message: "Add reading history succeed",
+        data: result,
+      };
+    else return { error: true, message: "Add reading history failed" };
+  } catch (err) {
+    console.log(err);
+    return err;
+  }
+};
+
+export const updateReadingHistorySV = async (user_id, novel_id, chapter) => {
+  try {
+    const result = await db.ReadingHistory.update(
+      { chapter },
+      { where: { user_id, novel_id } }
+    );
+    if (result)
+      return {
+        error: false,
+        message: "Update reading history succeed",
+        data: result,
+      };
+    else return { error: true, message: "Update reading history failed" };
   } catch (err) {
     console.log(err);
     return err;
