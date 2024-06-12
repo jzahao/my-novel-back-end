@@ -5,7 +5,7 @@ import connection from "./src/config/connectDB.configs.js";
 import apiRoutes from "./src/routes/api.routes.js";
 
 const app = express();
-const port = process.env.PORT || 8081;
+const port = process.env.PORT;
 
 // Solve cors problem
 app.use(function (req, res, next) {

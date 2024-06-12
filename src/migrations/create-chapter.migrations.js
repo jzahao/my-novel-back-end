@@ -2,18 +2,30 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("Users", {
+    await queryInterface.createTable("Chapters", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      username: {
+      novel_id: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+      },
+      chapter_number: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+      },
+      chapter_name: {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      password: {
+      content: {
+        allowNull: false,
+        type: Sequelize.TEXT("long"),
+      },
+      get_from: {
         allowNull: false,
         type: Sequelize.STRING,
       },
@@ -30,6 +42,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("Users");
+    await queryInterface.dropTable("Chapters");
   },
 };
